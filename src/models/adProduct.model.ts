@@ -42,7 +42,7 @@ const AdProductSchema = new Schema<AdProductDocument>(
     },
     image: {
       type: String,
-      required: true,
+      // required: true,
     },
     category: {
       type: Schema.Types.ObjectId,

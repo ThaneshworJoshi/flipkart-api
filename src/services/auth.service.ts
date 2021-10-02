@@ -4,6 +4,7 @@ import { tokenTypes } from '../config/jwt';
 import Api404Error from '../errors/Api404Error';
 import AuthorizationError from '../errors/AuthorizationError';
 import Token, { TokenDocument } from '../models/token.model';
+import { findToken } from './token.service';
 import { findUser } from './user.service';
 
 /**
@@ -13,11 +14,11 @@ import { findUser } from './user.service';
  * @returns {Promise<User>}
  */
 export const loginUserWithEmailAndPassword = async (email: string, password: string) => {
-  const user = await findUser({ email });
+  const user = await findUser({ email, isBanned: false });
   if (!user || !(await user.matchPassword(password))) {
     throw new AuthorizationError('Incorrect email or password');
   }
-  return user;
+  return { _id: user._id, role: user.role, email: user.email };
 };
 
 /**
@@ -27,8 +28,7 @@ export const loginUserWithEmailAndPassword = async (email: string, password: str
  */
 export const logout = async (refreshToken: string) => {
   const type: any = tokenTypes.REFRESH;
-  const refreshTokenDoc = await Token.findOne({ token: refreshToken, type, blacklisted: false });
-
+  const refreshTokenDoc = await findToken({ token: refreshToken, type, blacklisted: false });
   if (!refreshTokenDoc) {
     throw new Api404Error();
   }

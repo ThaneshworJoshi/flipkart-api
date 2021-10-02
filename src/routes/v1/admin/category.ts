@@ -10,7 +10,8 @@ router
   .post(upload.single('image'), createCategory)
   // .post(requireSignin, isAdmin, upload.single('image'), createCategory)
 
-  .delete(requireSignin, isAdmin, deleteCategoryById)
+  .delete(deleteCategoryById)
+  // .delete(requireSignin, isAdmin, deleteCategoryById)
   //TODO
   .put(() => {});
 // router.route('/').delete(deleteCategoryById);

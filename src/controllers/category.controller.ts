@@ -4,11 +4,11 @@ import slugify from 'slugify';
 import { nanoid } from 'nanoid';
 import { validate } from '../utils/validation/joi';
 import { categorySchema } from '../utils/validators/categoryBodySchema';
-import { categoryService } from '../services';
-import { ObjectId } from 'mongoose';
+import { adCategoryService, categoryService } from '../services';
 import Api404Error from '../errors/Api404Error';
 import * as httpStatus from 'http-status-codes';
 import { removeImage } from '../utils/helpers/removeFiles';
+import { adCategoryCreateSchema } from '../utils/validators/adCategoryBodySchema';
 
 /**
  * Create a category
@@ -52,7 +52,6 @@ export const createCategory = asyncHandler(async (req: Request, res: Response) =
     // @ts-ignore
     categoryObject.parentId = parentId;
   }
-  console.log(categoryObject);
   const category = await categoryService.createCategory(categoryObject);
 
   if (category) {
@@ -71,7 +70,6 @@ export const getCategories = asyncHandler(async (req: Request, res: Response) =>
   if (categories) {
     return res.status(httpStatus.StatusCodes.OK).json({ success: true, data: categories });
   }
-
   res.status(httpStatus.StatusCodes.INTERNAL_SERVER_ERROR).json({ error: 'Cannot get categories' });
 });
 
@@ -81,17 +79,20 @@ export const getCategories = asyncHandler(async (req: Request, res: Response) =>
  * @returns {Promise<Category>}
  */
 export const deleteCategoryById = asyncHandler(async (req: Request, res: Response) => {
-  const catId: ObjectId = req.body.categoryId;
-  const category = await categoryService.getCategoryById(catId);
+  const { categoryId } = req.body;
+  const category = await categoryService.getCategoryById(categoryId);
 
   if (!category) {
     //TODO
     throw new Api404Error('category not found');
   }
-  await category.remove();
-  removeImage(category.image);
 
-  res.status(httpStatus.NO_CONTENT).json({ success: true, message: 'Category deleted successfully' });
+  await category.remove();
+  if (category.image) {
+    removeImage(category.image);
+  }
+
+  res.status(httpStatus.StatusCodes.NO_CONTENT);
 });
 
 /**
@@ -102,5 +103,5 @@ export const deleteCategoryById = asyncHandler(async (req: Request, res: Respons
 export const getHomepageCategories = asyncHandler(async (req: Request, res: Response) => {
   const hpCategories = await categoryService.getHpCategories();
 
-  res.status(httpStatus.OK).json({ success: true, data: hpCategories });
+  res.status(httpStatus.StatusCodes.OK).json({ success: true, data: hpCategories });
 });

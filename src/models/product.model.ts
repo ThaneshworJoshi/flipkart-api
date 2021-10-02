@@ -15,6 +15,7 @@ export interface ProductDocument extends Document {
   offers?: Array<string>;
   highlights?: Array<string>;
   specifications?: Array<object>;
+  status: boolean;
   updatedAt: Date;
   createdBy: Schema.Types.ObjectId;
 }

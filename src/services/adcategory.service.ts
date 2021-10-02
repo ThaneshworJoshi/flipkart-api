@@ -34,6 +34,36 @@ export const getAdCategories = async (page = 1, pageSize = 2) => {
 };
 
 /**
+ *Get all Adcategories for admin
+ * TODO
+ * @returns {Promise[AdCategoryDocument]}
+ */
+export const getAdminAdCategories = async (page = 1, pageSize = 10) => {
+  return await AdCategory.aggregate([
+    {
+      $project: {
+        _id: '$_id',
+        title: '$title',
+        priority: '$priority',
+        totalProudcts: { $size: '$products' },
+      },
+    },
+  ])
+    .limit(pageSize)
+    .skip(pageSize * (page - 1));
+};
+
+/**
+ * Get products by category id
+ * @param {ObjectId} id
+ * @returns {Promise<AdProductDocument>}
+ * */
+//TODO
+export const getProductsByCategoryId = async (id: any) => {
+  return await AdCategory.findById(id).select('_id products');
+};
+
+/**
  * Update AdCategory by id
  * @param {ObjectId} id
  * @param {object} adCategoryObj
@@ -129,3 +159,13 @@ export const deleteProductById = async (catId: ObjectId, productId: ObjectId) =>
 export const countAdCategoies = async () => {
   return await AdCategory.countDocuments({});
 };
+
+// /**
+//  * Get products count by category id
+//  * @param {ObjectId} id
+//  * @returns {Number}
+//  * */
+// export const countProductsByCategoryId = async (id: ObjectId) => {
+//   const category = await AdCategory.findById(id);
+//   return category?.products.length;
+// };

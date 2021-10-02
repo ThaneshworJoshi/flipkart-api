@@ -34,7 +34,7 @@ export const findUserById = async (id: ObjectId) => {
  * @returns {Promise<User>}
  */
 export const findUser = async (query: FilterQuery<UserDocument>) => {
-  return await User.findOne(query);
+  return await User.findOne(query); //.select('_id email role password');
 };
 
 /**

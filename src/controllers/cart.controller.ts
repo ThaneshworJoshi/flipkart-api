@@ -13,10 +13,8 @@ export const addProductToCart = asyncHandler(async (req: Request, res: Response)
   //@ts-ignore
   const userId = req.user._id;
   const cart = await cartService.getCartByUserId(userId);
-
   if (cart) {
     let cartUpdatePromises: Array<CartDocument | any> = [];
-
     //@ts-ignore
     req.body.cartItems.forEach((cartItem) => {
       const productId = cartItem.product;
@@ -43,15 +41,15 @@ export const addProductToCart = asyncHandler(async (req: Request, res: Response)
     });
     Promise.all(cartUpdatePromises)
       .then((result) => {
-        res.status(httpStatus.OK).json({ success: true, message: 'Cart Updated Successfully' });
+        res.status(httpStatus.StatusCodes.OK).json({ success: true, message: 'Cart Updated Successfully' });
       })
-      .catch((error) => res.status(httpStatus.BAD_REQUEST).json({ success: false, error: error.message }));
+      .catch((error) => res.status(httpStatus.StatusCodes.BAD_REQUEST).json({ success: false, error: error.message }));
   } else {
     // Create a new Cart document
     const cartItems = req.body.cartItems;
     //@ts-ignore
     const cart = await cartService.createNewCart(userId, cartItems);
-    res.status(httpStatus.CREATED).json({ success: true, cart });
+    res.status(httpStatus.StatusCodes.CREATED).json({ success: true, data: cart });
   }
 });
 
@@ -66,6 +64,7 @@ export const getCartItems = asyncHandler(async (req: Request, res: Response) => 
   //@ts-ignore
   const cart = await cartService.getCartProductsByUserId(userId);
 
+  console.log(cart?.cartItems);
   if (cart) {
     let cartItems: any = {};
     cart.cartItems.forEach((item: object, index: number) => {
@@ -80,7 +79,7 @@ export const getCartItems = asyncHandler(async (req: Request, res: Response) => 
         //@ts-ignore
         price: item.product.price,
         //@ts-ignore
-        qty: item.quantity,
+        quantity: item.quantity,
       };
     });
     return res.json({ success: true, data: cartItems });
@@ -88,3 +87,10 @@ export const getCartItems = asyncHandler(async (req: Request, res: Response) => 
 
   res.json({ success: true, message: 'Empty Cart' });
 });
+
+/**
+ * Remove items from cart
+ * @route POST /api/v1/carts/removeItem
+ * @access Public/User
+ */
+export const removeCartItem = asyncHandler(async (req: Request, res: Response) => {});

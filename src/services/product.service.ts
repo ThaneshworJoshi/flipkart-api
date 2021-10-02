@@ -10,6 +10,7 @@ import { removeImages } from '../utils/helpers/removeFiles';
  */
 export const createProduct = async (productObject: object) => {
   const product = await Product.create(productObject);
+  // console.log(proudct);
   return product;
 };
 
@@ -20,7 +21,7 @@ export const createProduct = async (productObject: object) => {
  */
 export const getProducts = async (query: FilterQuery<ProductDocument>) => {
   const product = await Product.find(query)
-    .select('name category countInStock status price')
+    .select('name category countInStock status price, productPictures')
     .populate('category', 'name');
   return product;
 };
@@ -30,19 +31,26 @@ export const getProducts = async (query: FilterQuery<ProductDocument>) => {
  * @param {ObjectId} catId
  * @returns {Promise<Products>}
  */
-export const getProductByCatId = async (catId: ObjectId) => {
-  return await Product.find({ category: catId })
-    .select('_id name slug price countInStock productPictures avgRating totalReviews')
-    .populate('category', '_id name type');
+export const getProductByCatId = async (catId: ObjectId, getCategory: boolean) => {
+  if (getCategory)
+    return await Product.find({ category: catId })
+      .select('_id name slug price countInStock productPictures avgRating totalReviews')
+      .populate('category', '_id name type');
+  else
+    return await Product.find({ category: catId }).select(
+      '_id name slug price countInStock productPictures avgRating totalReviews'
+    );
 };
 
 /**
  * Get product by id
  * @param {any} productId
+ * @param {boolean} shouldGetDetail
  * @returns {Promise<Product>}
  */
-export const getProductById = async (productId: any) => {
-  return await Product.findById(productId);
+export const getProductById = async (productId: any, shouldGetDetail = true) => {
+  if (shouldGetDetail) return await Product.findById(productId);
+  else return await Product.findById(productId).select('_id name productPictures price countInStock');
 };
 
 /**

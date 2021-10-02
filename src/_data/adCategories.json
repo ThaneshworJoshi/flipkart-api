@@ -1,0 +1,237 @@
+[
+  {
+    "_id": "5d713995b721c3bb38c1f5d0",
+    "title": "Top Offers",
+    "slug": "top-offers",
+    "subtitle": "subtitle",
+    "products": [
+      {
+        "_id": "610c02e322769638819b168a",
+        "name": "Best Deals on HP",
+        "info": "from $399",
+        "desc": "upto 6 months NECM",
+        "image": "https://rukminim1.flixcart.com/image/200/200/kk2wl8w0/computer/z/u/5/hp-original-imafzgdgcbtxvjka.jpeg?q=70",
+        "category": ""
+      },
+      {
+        "_id": "610c02f0a58836cb22617b01",
+        "name": "Best Gaming Deals",
+        "info": "from $333",
+        "desc": "Acer, HP, Asus & More",
+        "image": "https://rukminim1.flixcart.com/image/200/200/klcmoi80/computer/q/e/3/na-gaming-laptop-acer-original-imagyhwfgwhkf3vv.jpeg?q=70",
+        "category": ""
+      },
+      {
+        "_id": "610c02f7fe09848d84da3881",
+        "name": "Top 20 Hair Straighteners",
+        "info": "From $33",
+        "desc": "Vega, Philips & more",
+        "image": "https://rukminim1.flixcart.com/image/200/200/k5lcvbk0pkrrdj/hair-straightener-refurbished/u/h/p/c-bhh880-10-heated-straightening-brush-with-thermoprotect-original-imafjpg2pqgxg6yy.jpeg?q=70",
+        "category": ""
+      },
+      {
+        "_id": "610c02fef3027b21ff969296",
+        "name": "realme Narzo 30A",
+        "info": "From $333",
+        "desc": "$200off",
+        "image": "https://rukminim1.flixcart.com/image/200/200/klgx0280/mobile/z/b/z/narzo-30a-rmx3171-realme-original-imagyhbgzcyfwzfz.jpeg?q=70",
+        "category": ""
+      },
+      {
+        "_id": "610c030737832dfb0bd6e880",
+        "name": "Point & Shoot Cameras",
+        "info": "Sony, Olympus & more",
+        "desc": "from $333",
+        "image": "https://rukminim1.flixcart.com/image/200/200/j6pctjk0/point-shoot-camera/u/x/e/powershot-g7-x-mark-ii-powershot-g-powershot-g7-x-mark-ii-canon-original-imaex2zjkmzyvgtb.jpeg?q=70",
+        "category": ""
+      },
+      {
+        "_id": "610c0313957bf109412e1937",
+        "name": "Instant Cameras",
+        "info": "From $4,444",
+        "desc": "By Fujfilms",
+        "image": "https://rukminim1.flixcart.com/image/200/200/j6zcwi80/instant-camera/5/q/n/ice-blue-with-brown-case-40-shots-mini-9-ice-blue-with-brown-original-imaex6nzgyqqzhfk.jpeg?q=70",
+        "category": ""
+      },
+      {
+        "_id": "610c031a5f05bddf0934d1ef",
+        "name": "boAt Aavante Bar 1200 80 W Bluethoot Soundbar",
+        "info": "Stereo Surround Sound",
+        "desc": "$3,44",
+        "image": "https://rukminim1.flixcart.com/image/200/200/khcb7gw0-0/speaker/soundbar/l/e/k/aavante-bar-1200-aavante-bar-1280-boat-original-imafxdasfk3yyp8k.jpeg?q=70",
+        "category": ""
+      },
+      {
+        "_id": "610c031e9f5b1b5b615f2746",
+        "name": "Top 20 Cameras",
+        "info": "From $33,33",
+        "desc": "DSLRs,Action,Digital & more",
+        "image": "https://rukminim1.flixcart.com/image/200/200/khcb7gw0-0/speaker/soundbar/l/e/k/aavante-bar-1200-aavante-bar-1280-boat-original-imafxdasfk3yyp8k.jpeg?q=70",
+        "category": ""
+      }
+    ],
+    "priority": "1"
+  },
+  {
+    "_id": "5d713a66ec8f2b88b8f830b8",
+    "title": "Today's Fashion Deals",
+    "slug": "todays-fashion-deals",
+    "subtitle": "subtitle",
+    "products": [
+      {
+        "_id": "610c032af8e0a0c638849513",
+        "name": "Libas,Aurelia,Varanga",
+        "info": "Min 60% Off",
+        "desc": "Best Discount on Brands!",
+        "image": "https://rukminim1.flixcart.com/image/200/200/jg6v24w0/kurta/z/s/f/s-4969-multicolor-libas-original-imaf4hzanwh5zwsr.jpeg?q=70",
+        "category": ""
+      },
+      {
+        "_id": "610c032f2b3c768e3b2194f7",
+        "name": "Nike,ASICS & more",
+        "info": "Min 40% Off",
+        "desc": "Sports Shoes",
+        "image": "https://rukminim1.flixcart.com/image/200/200/kfvfwy80-0/shoe/j/n/s/bq3204-010-10-nike-black-original-imafw88xushewqyg.jpeg?q=70",
+        "category": ""
+      },
+      {
+        "_id": "610c033784e22f5bb5bcefff",
+        "name": "Top 20 Hair Straighteners",
+        "info": "From $33",
+        "desc": "Vega, Philips & more",
+        "image": "https://rukminim1.flixcart.com/image/200/200/k5lcvbk0pkrrdj/hair-straightener-refurbished/u/h/p/c-bhh880-10-heated-straightening-brush-with-thermoprotect-original-imafjpg2pqgxg6yy.jpeg?q=70",
+        "category": ""
+      },
+      {
+        "_id": "610c033b0ba00d4352e460cb",
+        "name": "ADIDAS,Puma,Asian..",
+        "info": "Min 40% Off",
+        "desc": "Sports Shoes",
+        "image": "https://rukminim1.flixcart.com/image/200/200/kdyus280-0/shoe/x/i/l/cm4982-8-adidas-legink-ftwwht-globlu-original-imafuqvqt6hnfuqf.jpeg?q=70",
+        "category": ""
+      },
+      {
+        "_id": "610c0342ee88fe2f6f04c87c",
+        "name": "Woodland,Converse,Red Tap",
+        "info": "Min 50% Off",
+        "desc": "Men's Casual Shoes,Sandals",
+        "image": "https://rukminim1.flixcart.com/image/200/200/kj8wccw0-0/shoe/d/q/w/ogc-3306119-44-woodland-khaki-original-imafyvfy9gwkzeph.jpeg?q=70",
+        "category": ""
+      },
+      {
+        "_id": "610c03481a0de0d1cc59234a",
+        "name": "Puma,Catwalk & more",
+        "info": "50-70 Off",
+        "desc": "Grab your Best Today",
+        "image": "https://rukminim1.flixcart.com/flap/200/200/image/ecf53c70cb4a73b1.jpg?q=70",
+        "category": ""
+      },
+      {
+        "_id": "610c03502460e1f3a529538c",
+        "name": "Casio,Titan,Fasttrack",
+        "info": "10-50 Off",
+        "desc": "$3,44",
+        "image": "https://rukminim1.flixcart.com/image/200/200/jua4djk0/watch/z/y/t/usat0154-u-s-polo-assn-original-imaffg67vgp8nfqz.jpeg?q=70",
+        "category": ""
+      },
+      {
+        "_id": "610c035488ef50e97c3c8c23",
+        "name": "Kids Tshirt,Shirt",
+        "info": "Min 60% Off",
+        "desc": "Allen Solly,Us POLO & more",
+        "image": "https://rukminim1.flixcart.com/flap/200/200/image/78b36cea24d90f1a.jpg?q=70",
+        "category": ""
+      },
+      {
+        "_id": "610c035aa196bf8b3cf31adc",
+        "name": "Levi's Muft,Flying Machine",
+        "info": "Min 50% Off",
+        "desc": "Trendy Jeans",
+        "image": "https://rukminim1.flixcart.com/flap/200/200/image/1d8d65d4a365bac5.jpg?q=70",
+        "category": ""
+      }
+    ],
+    "priority": "2"
+  },
+  {
+    "_id": "5d725a037b292f5f8ceff787",
+    "title": "Electronics And Accessories",
+    "slug": "electronics-and-accessories",
+    "subtitle": "subtitle",
+    "products": [
+      {
+        "_id": "610c03602d6106c2705f4491",
+        "name": "Top 20 Tablets",
+        "info": "Upto 45% Off",
+        "desc": "Best Sellets | Top Deals",
+        "image": "https://rukminim1.flixcart.com/image/200/200/kn4xhu80/tablet/8/c/6/sm-t500nzdginu-samsung-original-imagfvsdmm6cxnxa.jpeg?q=70",
+        "category": ""
+      },
+      {
+        "_id": "610c036833b3aa0ccfe18523",
+        "name": "Smitch 360deg 1080p Wifi Slim",
+        "info": "Just for 1999",
+        "desc": "$1,999",
+        "image": "https://rukminim1.flixcart.com/image/200/200/kfeamq80/home-security-camera/e/5/d/sscampt201-indoor-outdoor-security-camera-smitch-original-imafvvy3yyyejqhz.jpeg?q=70",
+        "category": ""
+      },
+      {
+        "_id": "610c037006e0e43aa5ac1d38",
+        "name": "Top 10 Projectors",
+        "info": "From $33",
+        "desc": "Vega, Philips & more",
+        "image": "https://rukminim1.flixcart.com/image/200/200/k76ihe80/projector/p/5/d/eg-i9-black-8908947019005-egate-original-imafpgyzh3pwyyze.jpeg?q=70",
+        "category": ""
+      },
+      {
+        "_id": "610c0378f01d50352c93fb31",
+        "name": "Top 10 DSLRs & Mirrorless",
+        "info": "From $19933",
+        "desc": "Upto $93993 off on Exchange",
+        "image": "https://rukminim1.flixcart.com/image/200/200/juwzf680/dslr-camera/g/a/q/200d-ii-200d-ii-canon-original-imaffvrhzyqzayys.jpeg?q=70",
+        "category": ""
+      },
+      {
+        "_id": "610c037d3e0f8f143bf46541",
+        "name": "OnePlus PowerBanks",
+        "info": "Min 50% Off",
+        "desc": "Men's Casual Shoes,Sandals",
+        "image": "https://rukminim1.flixcart.com/image/200/200/khcb7gw0/power-bank/n/m/w/power-bank-10000-p102a-oneplus-original-imafxdnaqwchyqnx.jpeg?q=70",
+        "category": ""
+      },
+      {
+        "_id": "610c0386139798471b40365e",
+        "name": "Best Budget Laptops",
+        "info": "50-70 Off",
+        "desc": "Grab your Best Today",
+        "image": "https://rukminim1.flixcart.com/image/200/200/kfcv6vk0/computer/q/z/v/lenovo-original-imafvu6qruyhhnwc.jpeg?q=70",
+        "category": ""
+      },
+      {
+        "_id": "610c038c5a384b83bb4540ea",
+        "name": "Top 20 Hair Dryers",
+        "info": "10-50 Off",
+        "desc": "$3,44",
+        "image": "https://rukminim1.flixcart.com/flap/200/200/image/82d34b8e1c212f89.jpg?q=70",
+        "category": ""
+      },
+      {
+        "_id": "610c03926b0fe12ebfb67f72",
+        "name": "Nikon D5600 DSLR",
+        "info": "From $33,33",
+        "desc": "Up to $3333 Off on Exchange",
+        "image": "https://rukminim1.flixcart.com/image/200/200/dslr-camera/t/h/g/d5600-nikon-d5600-original-imaezvbrhkgzyywz.jpeg?q=70",
+        "category": ""
+      },
+      {
+        "_id": "610c039a0ae47a7e1792c921",
+        "name": "Levi's Muft,Flying Machine",
+        "info": "Min 50% Off",
+        "desc": "Trendy Jeans",
+        "image": "https://rukminim1.flixcart.com/flap/200/200/image/1d8d65d4a365bac5.jpg?q=70",
+        "category": ""
+      }
+    ],
+    "priority": "3"
+  }
+]

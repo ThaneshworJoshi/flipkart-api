@@ -23,7 +23,7 @@ export const registerUser = asyncHandler(async (req: Request, res: Response, nex
   const user = await userService.createUser(email, password);
   const ip = 'testip' || getClientIp(req);
   const tokens = await tokenService.generateAuthToken(user, ip);
-  res.status(httpStatus.CREATED).send({ user, tokens });
+  res.status(httpStatus.StatusCodes.CREATED).send({ user, tokens });
 });
 
 /**
@@ -37,7 +37,8 @@ export const login = asyncHandler(async (req: Request, res: Response) => {
   const { email, password } = req.body as { email: string; password: string };
   const user = await authService.loginUserWithEmailAndPassword(email, password);
   const tokens = await tokenService.generateAuthToken(user);
-  res.status(httpStatus.OK).json({ success: true, user, tokens });
+  // res.cookie('token', 'token', { maxAge: 1000 * 60 * 10, httpOnly: true });
+  res.status(httpStatus.StatusCodes.OK).json({ success: true, user, tokens: tokens });
 });
 
 /**
@@ -46,11 +47,11 @@ export const login = asyncHandler(async (req: Request, res: Response) => {
  * @param {Request} req
  * @param {Response} res
  */
-export const logout = asyncHandler(async (req, res) => {
+export const logout = asyncHandler(async (req: Request, res: Response) => {
   await validate(req.body, refreshTonekSchema);
   await authService.logout(req.body.refreshToken);
   // NO content 204
-  res.status(httpStatus.OK).json({ success: true, data: {} });
+  res.status(httpStatus.StatusCodes.NO_CONTENT).json({ success: true, data: {} });
 });
 
 /**
@@ -61,7 +62,9 @@ export const logout = asyncHandler(async (req, res) => {
  */
 export const refreshTokens = asyncHandler(async (req: Request, res: Response) => {
   await validate(req.body, refreshTonekSchema);
-  const tokens = await authService.refreshAuth(req.body.refreshToken);
+  const { refreshToken } = req.body as { refreshToken: string };
+
+  const tokens = await authService.refreshAuth(refreshToken);
   res.send({ ...tokens });
 });
 
@@ -75,7 +78,7 @@ export const resetPassword = asyncHandler(async (req: Request, res: Response) =>
   await validate(req.body, requiredPasswordSchema);
   const token: any = req.query.token;
   await authService.resetPassword(token, req.body.password);
-  res.status(httpStatus.NO_CONTENT).send();
+  res.status(httpStatus.StatusCodes.NO_CONTENT).send();
 });
 
 /**
@@ -90,7 +93,7 @@ export const forgotPassword = asyncHandler(async (req: Request, res: Response) =
   const resetPasswordToken = await tokenService.generateResetPasswordToken(email);
   await emailService.sendResetPasswordEmail(email, resetPasswordToken);
   // No content
-  res.status(httpStatus.NO_CONTENT).send();
+  res.status(httpStatus.StatusCodes.NO_CONTENT).send();
 });
 
 /**
@@ -102,16 +105,15 @@ export const forgotPassword = asyncHandler(async (req: Request, res: Response) =
 export const sendVerificationEmail = asyncHandler(async (req: Request, res: Response) => {
   // const verifyEmailToken = await tokenService.generateVerifyEmailToken(req.user);
   // await emailService.sendVerificationEmail(req.user.email, verifyEmailToken);
-  res.status(httpStatus.NO_CONTENT).send();
+  res.status(httpStatus.StatusCodes.NO_CONTENT).send();
 });
 
 /**
  * @param {Request} req
  * @param {Response} res
  */
-
 export const verifyEmail = asyncHandler(async (req: Request, res: Response) => {
   const token: any = req.query.token;
   await authService.verifyEmail(token);
-  res.status(httpStatus.NO_CONTENT).send();
+  res.status(httpStatus.StatusCodes.NO_CONTENT).send();
 });

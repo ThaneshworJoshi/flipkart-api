@@ -21,12 +21,13 @@ import slugify from 'slugify';
 export const createProduct = asyncHandler(async (req: Request, res: Response) => {
   await validate(req.body, productSchema);
 
-  const { name, price, countInStock, description, category } = req.body as {
+  const { name, price, countInStock, description, category, highlights } = req.body as {
     name: string;
     price: number;
     countInStock: number;
     description: string;
     category: ObjectId;
+    highlights: Array<string>;
   };
 
   const slug: string = `${slugify(name, {
@@ -41,9 +42,11 @@ export const createProduct = asyncHandler(async (req: Request, res: Response) =>
     countInStock,
     description,
     category,
+    highlights,
     //createdBy: req.user.id
   };
-  //@ts-ignore
+
+  // @ts-ignore
   if (req.files?.length > 0) {
     let productImages = [];
     //@ts-ignore
@@ -71,8 +74,8 @@ export const createProduct = asyncHandler(async (req: Request, res: Response) =>
  * @access Public/Admin
  * */
 export const getProducts = asyncHandler(async (req: Request, res: Response) => {
-  const products = await productService.getProducts({});
-  return res.status(httpStatus.StatusCodes.OK).json({ data: products });
+  let products = await productService.getProducts({});
+  res.status(httpStatus.StatusCodes.OK).json({ data: products });
 });
 
 /**
@@ -83,37 +86,58 @@ export const getProducts = asyncHandler(async (req: Request, res: Response) => {
  *
  */
 export const getProductsByCatId = asyncHandler(async (req: Request, res: Response) => {
-  let { catId } = req.params as {
-    catId: string;
+  let { cid } = req.query as {
+    cid: string;
   };
-  const category = await Category.findById(catId).select('_id type');
-
+  const category = await Category.findById(cid).select('_id type');
   if (category) {
-    const products = await productService.getProductByCatId(category._id);
+    const products = await productService.getProductByCatId(category._id, false);
     if (products.length > 0) {
-      if (category.type === 'list') {
+      if (category.type === 'store') {
         //TODO
         // const latestProducts = products
         return res.status(httpStatus.StatusCodes.OK).json({
-          productsByPrice: {
-            under5K: products.filter((p) => p.price <= 5000),
+          data: {
+            under5k: products.filter((p) => p.price <= 5000),
             under10k: products.filter((p) => p.price > 5000 && p.price <= 10000),
             under15k: products.filter((p) => p.price > 10000 && p.price <= 15000),
             under20k: products.filter((p) => p.price > 15000 && p.price <= 20000),
             above20k: products.filter((p) => p.price > 20000),
           },
         });
-      } else if (category.type === 'store') {
+      } else if (category.type === 'list') {
         return res.status(httpStatus.StatusCodes.OK).json({
           //@ts-ignore
-          products: products.sort((a, b) => (a.avgRating > b.avgRating ? -1 : 1)),
+          data: products.sort((a, b) => (a.avgRating > b.avgRating ? -1 : 1)),
         });
       } else {
-        return res.status(httpStatus.StatusCodes.OK).json({ products });
+        return res.status(httpStatus.StatusCodes.OK).json({ data: products });
       }
     }
   }
   throw new Api404Error('Products Not Found');
+});
+
+/**
+ * Get  product info by product id
+ * @route GET /products/:catId
+ * @param {Request} req
+ * @param {Response} res
+ */
+export const getProductInfoById = asyncHandler(async (req: Request, res: Response) => {
+  const { productId } = req.params as {
+    productId: string;
+  };
+
+  if (productId) {
+    const product = await productService.getProductById(productId, false);
+    console.log(product);
+    if (product) {
+      return res.status(httpStatus.StatusCodes.OK).json({ data: product });
+    }
+  }
+  // TODO
+  throw new Api404Error('Product Not Found');
 });
 
 /**
@@ -189,15 +213,15 @@ export const updateProduct = asyncHandler(async (req: Request, res: Response) =>
   };
 
   //@ts-ignore
-  if (req.files?.length > 0) {
-    let productImages = [];
-    //@ts-ignore
-    productImages = req.files?.map((file) => {
-      return { img: file.filename };
-    });
-    //@ts-ignore
-    productObject.productPictures = productImages;
-  }
+  // if (req.files?.length > 0) {
+  //   let productImages = [];
+  //   //@ts-ignore
+  //   productImages = req.files?.map((file) => {
+  //     return { img: file.filename };
+  //   });
+  //   //@ts-ignore
+  //   productObject.productPictures = productImages;
+  // }
 
   const updatedProduct = await productService.updateProduct(productId, productObject);
   res.status(httpStatus.StatusCodes.OK).json({ success: true, data: updatedProduct });

@@ -7,13 +7,13 @@ const countInStock = Joi.number().required();
 const description = Joi.string().required();
 const category = Joi.string().required();
 const brand = Joi.string();
-
+const highlights = Joi.array().items(Joi.string());
 export const productSchema = Joi.object({
-  productId,
   name,
   price,
   countInStock,
   description,
   category,
   brand,
+  highlights,
 });

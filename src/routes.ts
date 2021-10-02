@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import userRoutes from './routes/v1/user/users';
 import categoryRoutes from './routes/v1/admin/category';
+import publicAdCategoryRoutes from './routes/v1/adcategory';
 import adCategoryRoutes from './routes/v1/admin/adcategory';
 import publicCategoryRoutes from './routes/v1/category';
 import productRoutes from './routes/v1/admin/product';
@@ -14,7 +15,7 @@ import { getHomepageItems } from './controllers/home.controller';
 
 const router = Router();
 
-router.use('/adcategories', adCategoryRoutes);
+router.use('/adcategories', publicAdCategoryRoutes, adCategoryRoutes);
 
 router.use('/users', userRoutes);
 router.use('/categories', publicCategoryRoutes, categoryRoutes);

@@ -1,6 +1,7 @@
 import * as HttpStatus from 'http-status-codes';
 import AuthorizationError from '../errors/AuthorizationError';
 import BaseError from '../errors/BaseError';
+import TokenError from '../errors/TokenError';
 import ValidationError from '../errors/ValidationError';
 /**
  * Build error response for validation errors
@@ -16,18 +17,19 @@ export function buildError(err: any) {
       message: 'Resource not found',
     };
   }
+
   // Syntax errors
   if (err instanceof SyntaxError) {
     return {
       code: 400,
-      message: HttpStatus.getStatusText(HttpStatus.BAD_REQUEST),
+      message: HttpStatus.getStatusText(HttpStatus.StatusCodes.BAD_REQUEST),
     };
   }
 
   // Validation errors
   if (err instanceof ValidationError) {
     return {
-      code: HttpStatus.BAD_REQUEST,
+      code: HttpStatus.StatusCodes.BAD_REQUEST,
       message: err.message,
       details:
         err.details &&
@@ -43,7 +45,7 @@ export function buildError(err: any) {
   // Authorization error
   if (err instanceof AuthorizationError) {
     return {
-      code: HttpStatus.UNAUTHORIZED,
+      code: HttpStatus.StatusCodes.UNAUTHORIZED,
       message: err.message,
     };
   }
@@ -51,8 +53,8 @@ export function buildError(err: any) {
   // Joi errors
   if (err.isJoi) {
     return {
-      code: HttpStatus.BAD_REQUEST,
-      message: HttpStatus.getStatusText(HttpStatus.BAD_REQUEST),
+      code: HttpStatus.StatusCodes.BAD_REQUEST,
+      message: HttpStatus.getStatusText(HttpStatus.StatusCodes.BAD_REQUEST),
       details:
         err.details &&
         err.details.map((error: any) => {
@@ -62,7 +64,7 @@ export function buildError(err: any) {
   }
 
   if (err instanceof BaseError) {
-    const httpCode = err.statusCode ? err.statusCode : HttpStatus.BAD_REQUEST;
+    const httpCode = err.statusCode ? err.statusCode : HttpStatus.StatusCodes.BAD_REQUEST;
 
     return {
       code: httpCode,
@@ -71,8 +73,15 @@ export function buildError(err: any) {
     };
   }
 
+  if (err instanceof TokenError) {
+    return {
+      code: HttpStatus.StatusCodes.FORBIDDEN,
+      message: 'FORBIDDEN',
+    };
+  }
+
   return {
-    code: HttpStatus.INTERNAL_SERVER_ERROR,
-    message: HttpStatus.getStatusText(HttpStatus.INTERNAL_SERVER_ERROR),
+    code: HttpStatus.StatusCodes.INTERNAL_SERVER_ERROR,
+    message: HttpStatus.getStatusText(HttpStatus.StatusCodes.INTERNAL_SERVER_ERROR),
   };
 }

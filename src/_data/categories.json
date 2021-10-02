@@ -1,0 +1,128 @@
+[
+  {
+    "_id": "610c063bfa4bcba072d78141",
+    "name": "Electronics",
+    "type": "",
+    "active": "true",
+    "image": "https://rukminim1.flixcart.com/flap/128/128/image/1dfca1558f649fc3.jpg?q=100",
+    "shouldDispInHeader": true,
+    "parentId": ""
+  },
+  {
+    "_id": "610c065cf93394e65db12f18",
+    "name": "Fashion",
+    "type": "",
+    "active": "true",
+    "image": "https://rukminim1.flixcart.com/flap/128/128/image/1dfca1558f649fc3.jpg?q=100",
+    "shouldDispInHeader": true,
+    "parentId": ""
+  },
+  {
+    "_id": "610c0662071bb75ca1db9b6b",
+    "name": "Mobile",
+    "type": "",
+    "active": "true",
+    "image": "https://rukminim1.flixcart.com/flap/128/128/image/41735aded44a11a2.jpg?q=100",
+    "shouldDispInHeader": true,
+    "parentId": ""
+  },
+  {
+    "_id": "610c066933c2b3afafecd1d8",
+    "name": "Home",
+    "type": "https://rukminim1.flixcart.com/flap/128/128/image/40f9e12bcef2472f.jpg?q=100",
+    "active": "true",
+    "image": "",
+    "shouldDispInHeader": true,
+    "parentId": ""
+  },
+  {
+    "_id": "610c06714b68cb24537e767d",
+    "name": "Appliances",
+    "type": "",
+    "active": "true",
+    "image": "https://rukminim1.flixcart.com/flap/128/128/image/f9002812e5673020.jpg?q=100",
+    "shouldDispInHeader": true,
+    "parentId": ""
+  },
+  {
+    "_id": "610c067b1376825ebd3df672",
+    "name": "Travel",
+    "type": "",
+    "active": "true",
+    "image": "https://rukminim1.flixcart.com/flap/128/128/image/a7367070e1d78018.jpg?q=100",
+    "shouldDispInHeader": true,
+    "parentId": ""
+  },
+  {
+    "_id": "610c0681036f01e4d98f435c",
+    "name": "Beauty,Toys & More",
+    "type": "",
+    "active": "true",
+    "image": "https://rukminim1.flixcart.com/flap/128/128/image/6cd38f9cbe1261ce.jpg?q=100",
+    "shouldDispInHeader": true,
+    "parentId": ""
+  },
+  {
+    "_id": "610c06ad32af018a46640cb7",
+    "name": "Furniture",
+    "type": "",
+    "active": "true",
+    "image": "https://rukminim1.flixcart.com/flap/128/128/image/5da6e24591c5ebcf.jpg?q=100",
+    "shouldDispInHeader": true,
+    "parentId": ""
+  },
+  {
+    "_id": "610c06b6ccdfdbf94f812aa6",
+    "name": "Samsung",
+    "type": "",
+    "active": true,
+    "image": "",
+    "shouldDispInHeader": true,
+    "parentId": "610c0662071bb75ca1db9b6b"
+  },
+  {
+    "_id": "610c06bc756ab2cf9c65aa7f",
+    "name": "Realme",
+    "type": "",
+    "active": false,
+    "image": "",
+    "shouldDispInHeader": false,
+    "parentId": "610c0662071bb75ca1db9b6b"
+  },
+  {
+    "_id": "610c06df31eea371cc87624d",
+    "name": "OPPO",
+    "type": "",
+    "active": false,
+    "image": "",
+    "shouldDispInHeader": false,
+    "parentId": "610c0662071bb75ca1db9b6b"
+  },
+  {
+    "_id": "610c06e6f365b67e14b489c6",
+    "name": "Apple",
+    "type": "",
+    "active": false,
+    "image": "",
+    "shouldDispInHeader": false,
+    "parentId": "610c0662071bb75ca1db9b6b"
+  },
+  {
+    "_id": "610c06eeee977ddabfe4b4ca",
+    "name": "Vivo",
+    "type": "",
+    "active": false,
+    "image": "",
+    "shouldDispInHeader": false,
+    "parentId": "610c0662071bb75ca1db9b6b"
+  },
+  {
+    "_id": "610c06f4bed9a96067e48d29",
+    "name": "Asus",
+    "type": "",
+    "active": false,
+    "image": "",
+    "shouldDispInHeader": false,
+    "parentId": "610c0662071bb75ca1db9b6b"
+  }
+]

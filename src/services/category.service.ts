@@ -21,10 +21,9 @@ export const getCategories = async (query: FilterQuery<CategoryDocument>) => {
   const categories = await Category.find(query);
 
   if (categories) {
-     categoryList = createCategories(categories, null);
+    categoryList = createCategories(categories, null);
   }
-   return categoryList;
-
+  return categoryList;
 };
 
 /**

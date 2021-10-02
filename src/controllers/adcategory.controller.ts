@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { ObjectId } from 'mongoose';
+import { Mongoose, ObjectId, Schema, Types } from 'mongoose';
 import { nanoid } from 'nanoid';
 import slugify from 'slugify';
 import Api404Error from '../errors/Api404Error';
@@ -19,9 +19,9 @@ import {
  * @param {Request} req
  * @param {Response} res
  */
+
 export const createAdCategory = asyncHandler(async (req: Request, res: Response) => {
   await validate(req.body, adCategoryCreateSchema);
-
   const { title, subtitle, priority } = req.body as {
     title: string;
     subtitle: string;
@@ -43,7 +43,7 @@ export const createAdCategory = asyncHandler(async (req: Request, res: Response)
   const adCategory = await adCategoryService.createAdCategory(adCatObject);
 
   if (adCategory) {
-    return res.status(httpStatus.CREATED).json({ success: true, data: adCategory });
+    return res.status(httpStatus.StatusCodes.CREATED).json({ success: true, data: adCategory });
   }
 
   //TODO
@@ -78,6 +78,7 @@ export const updateAdCategory = asyncHandler(async (req: Request, res: Response)
   };
 
   const adCategory = await adCategoryService.getAdCategoryById(id);
+
   if (adCategory) {
     const updatedAdCategory = await adCategoryService.updateAdCategory(id, adCatObject);
     return res.status(httpStatus.OK).json({ success: true, data: updatedAdCategory });
@@ -93,9 +94,8 @@ export const updateAdCategory = asyncHandler(async (req: Request, res: Response)
  * @param {Response} res
  */
 export const deleteAdCategory = asyncHandler(async (req: Request, res: Response) => {
-  const adCatId: ObjectId = req.body.adCatId;
+  const adCatId: ObjectId = req.body.id;
   await adCategoryService.deleteAdCategoryById(adCatId);
-
   //TODO
   res.status(httpStatus.OK).json({ success: true, message: 'AdCategory deleted successfully' });
 });
@@ -132,8 +132,9 @@ export const addAdProduct = asyncHandler(async (req: Request, res: Response) => 
 
   const addedProduct = await adCategoryService.addProduct(parentAdCategoryId, prodObject);
 
-  res.status(httpStatus.CREATED).json({ success: true, data: addedProduct });
+  res.status(httpStatus.StatusCodes.CREATED).json({ success: true, data: addedProduct });
 });
+
 /**
  * Update product of category
  * @param {Request} req
@@ -167,9 +168,11 @@ export const updateAdCategoryProduct = asyncHandler(async (req: Request, res: Re
 
   // const adProductCategory = await adCategoryService.findById(parentAdCategoryId);
 
-  const addedProduct = await adCategoryService.updateProduct(parentAdCategoryId, id, prodObject);
-
-  res.status(httpStatus.OK).json({ success: true, message: 'Product Updated successfully' });
+  await adCategoryService.updateProduct(parentAdCategoryId, id, prodObject);
+  const adCategory = await adCategoryService.getAdCategoryById(parentAdCategoryId);
+  res
+    .status(httpStatus.StatusCodes.OK)
+    .json({ success: true, data: adCategory, message: 'Product Updated successfully' });
 });
 
 /**
@@ -183,20 +186,51 @@ export const removeAdProduct = asyncHandler(async (req: Request, res: Response) 
     parentAdCategoryId: ObjectId;
   };
 
+  // console.log(id, parentAdCategoryId);
   await adCategoryService.deleteProductById(parentAdCategoryId, id);
 
-  res.status(httpStatus.OK).json({ success: true, message: 'Product removed successfully' });
+  res.status(httpStatus.StatusCodes.OK).json({ success: true, message: 'Product removed successfully' });
 });
 
 /**
  * Get all adcategories
  * @param {Request} req
  * @param {Response} res
+ * PUBLIC
  */
 export const getAdCategories = asyncHandler(async (req: Request, res: Response) => {
   let page: number = Number(req.query.pageNumber);
   const adCategories = await adCategoryService.getAdCategories(page);
   const totalCategories = await adCategoryService.countAdCategoies();
+  res.status(httpStatus.StatusCodes.OK).json({ success: true, data: adCategories, totalCategories });
+});
 
-  res.status(httpStatus.OK).json({ success: true, data: adCategories, totalCategories });
+/**
+ * Get ad categories for admin
+ * @param {Request} req
+ * @param {Response} res
+ * PRIVATE/ADMIN
+ * */
+
+export const getAdminAdCategories = asyncHandler(async (req: Request, res: Response) => {
+  let page: number = Number(req.query.pageNumber);
+  const adCategories = await adCategoryService.getAdminAdCategories(page);
+  // const totalProducts = await adCategoryService.countProductsByCategoryId()
+  const totalCategories = await adCategoryService.countAdCategoies();
+
+  res.status(httpStatus.StatusCodes.OK).json({ success: true, data: adCategories, totalCategories });
+});
+
+/**
+ * Get ad category
+ * @param {Request} req
+ * @param {Response} res
+ * PUBLIC
+ * */
+export const getAdCategoryProducts = asyncHandler(async (req: Request, res: Response) => {
+  //TODO how to convert string to ObjectId
+  const id: any = req.params.id;
+  const products = await adCategoryService.getProductsByCategoryId(id);
+
+  res.status(httpStatus.StatusCodes.OK).json({ success: true, data: products });
 });

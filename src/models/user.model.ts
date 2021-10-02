@@ -94,7 +94,9 @@ const UserSchema: Schema = new Schema(
  * @returns {Promise<boolean>}
  */
 UserSchema.methods.matchPassword = async function (this: any, enteredPassword: string) {
-  return await compare(enteredPassword, this.password);
+  console.log(this.password, enteredPassword);
+  const result = await compare(enteredPassword, this.password);
+  return result;
 };
 
 /**
